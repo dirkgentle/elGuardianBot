@@ -5,11 +5,11 @@ import praw
 import pickle
 import traceback
 
-def update_log(mods, mods_backup_path): #para los comentarios que ya respondi
+def update_log(mods, mods_backup_path): #para respaldar los mods
 	with open(mods_backup_path, 'wb') as my_backup:
 		pickle.dump(mods, my_backup, protocol = pickle.HIGHEST_PROTOCOL)
 
-def load_log(mods_backup_path): #para los comentarios que ya respondi
+def load_log(mods_backup_path): #para recuperar los mods respaldados
 	with open(mods_backup_path) as my_backup:
 		return pickle.load(my_backup)
 
@@ -77,7 +77,7 @@ if __name__ == "__main__":
 						if mods[i].mod_permissions != mods_old[i].mod_permissions:
 							send_alert(mods, mods_old, reddit, current_subreddit, concerned_redditors)
 				mods_old = mods
-				time.sleep(10)
+				time.sleep(1 * 60)
 
 		except Exception as exception:
 			output_log(str(exception))
