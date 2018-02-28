@@ -72,10 +72,12 @@ if __name__ == "__main__":
 				mods = reddit.subreddit(current_subreddit).moderator()
 				if set(mods) != set(mods_old):
 					send_alert(mods, mods_old, reddit, current_subreddit, concerned_redditors)
+					update_log(mods, mods_backup_path)
 				else:
 					for i in range(len(mods)):
 						if mods[i].mod_permissions != mods_old[i].mod_permissions:
 							send_alert(mods, mods_old, reddit, current_subreddit, concerned_redditors)
+							update_log(mods_old, mods_backup_path)
 				mods_old = mods
 				time.sleep(1 * 60)
 
