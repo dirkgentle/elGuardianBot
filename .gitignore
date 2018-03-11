@@ -1,0 +1,5 @@
+login.py
+*.pyc
+*.pickle
+log.txt
+output_log.txt
